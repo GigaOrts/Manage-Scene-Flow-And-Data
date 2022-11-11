@@ -22,6 +22,8 @@ public class MenuUIHandler : MonoBehaviour
     {
         ColorPicker.Init();
         ColorPicker.onColorChanged += NewColorSelected;
+
+        ColorPicker.SelectColor(MainManager.Instance.TeamColor);
     }
 
     public void StartNew()
@@ -31,6 +33,8 @@ public class MenuUIHandler : MonoBehaviour
 
     public void Exit()
     {
+        MainManager.Instance.LoadColor();
+
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
@@ -38,4 +42,14 @@ public class MenuUIHandler : MonoBehaviour
 #endif
     }
 
+    public void SaveColorClicked()
+    {
+        MainManager.Instance.SaveColor();
+    }
+
+    public void LoadColorClocked()
+    {
+        MainManager.Instance.LoadColor();
+        ColorPicker.SelectColor(MainManager.Instance.TeamColor);
+    }
 }
